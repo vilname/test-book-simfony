@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: docker
+      dockerfile: development/nginx/Dockerfile
+    container_name: book_api
+    restart: unless-stopped
+    volumes:
+      - ./api:/app
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - symfony_network
+
+  api-php-fpm:
+    build:
+      context: docker
+      dockerfile: development/php-fpm/Dockerfile
+    container_name: book_api_php_fpm
+    env_file:
+      - .env
+    volumes:
+      - ./api:/app
+    networks:
+      - symfony_network
+
+  api-php-cli:
+    build:
+      context: docker
+      dockerfile: development/php-cli/Dockerfile
+    container_name: book_api_php_cli
+    env_file:
+      - .env
+    volumes:
+      - ./api:/app
+    networks:
+      - symfony_network
+
+  # PostgreSQL
+  db:
+    image: postgres:16-alpine
+    container_name: book_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - symfony_network
+
+  # PgAdmin 4
+  pgadmin:
+    image: dpage/pgadmin4:8.7
+    container_name: book_pg_admin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com  # Логин для входа
+      PGADMIN_DEFAULT_PASSWORD: 12345        # Пароль
+      PGADMIN_LISTEN_PORT: 83                  # Порт внутри контейнера
+    ports:
+      - "8083:83"  # Доступ на http://localhost:8083
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin  # Сохранение данных между перезапусками
+    depends_on:
+      - db
+    networks:
+      - symfony_network
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+networks:
+  symfony_network:
+    driver: bridge

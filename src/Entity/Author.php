@@ -18,6 +18,9 @@ class Author
     #[ORM\Column(type: 'string', nullable: false)]
     private string $fio;
 
+    #[ORM\Column(type: 'integer', options: ["default" => 0])]
+    private int $numberBooks = 0;
+
     #[ORM\OneToMany(targetEntity: Book::class, mappedBy: 'author')]
     private Collection $books;
 
@@ -39,6 +42,11 @@ class Author
     public function setFio(string $fio): void
     {
         $this->fio = $fio;
+    }
+
+    public function getNumberBooks(): int
+    {
+        return $this->numberBooks;
     }
 
     public function getBooks(): Collection

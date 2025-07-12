@@ -30,12 +30,12 @@ class BookAndAuthorFixtures extends Fixture
         $manager->flush();
 
         $id = $authorModel->getId();
-        $manager->clear();
 
         $randInt = random_int(100000, 120000);
 
         $batch = 100;
         $qtyBatch = ceil($randInt / $batch);
+        $numberBooks = 0;
 
         for ($j=0;$j<$batch;$j++) {
             $author = $manager->find(Author::class, $id);
@@ -46,7 +46,10 @@ class BookAndAuthorFixtures extends Fixture
                 $book->setAuthor($author);
 
                 $manager->persist($book);
+                $numberBooks++;
             }
+
+            $author->setNumberBooks($numberBooks);
 
             $manager->flush();
             $manager->clear();

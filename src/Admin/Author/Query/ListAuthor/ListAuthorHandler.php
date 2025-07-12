@@ -11,10 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class ListAuthorHandler
 {
-    public function __construct(
-        private EntityManagerInterface $entityManager,
-        private AuthorRepository $authorRepository
-    ) {}
+    public function __construct(private AuthorRepository $authorRepository) {}
 
     /**
      * @param PaginationDto $paginationDto

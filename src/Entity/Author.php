@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
+#[ORM\Table(name: 'authors')]
 class Author
 {
     #[ORM\Id]
@@ -21,7 +22,7 @@ class Author
     #[ORM\Column(type: 'integer', options: ["default" => 0])]
     private int $numberBooks = 0;
 
-    #[ORM\OneToMany(targetEntity: Book::class, mappedBy: 'author')]
+    #[ORM\OneToMany(targetEntity: Book::class, mappedBy: 'author', orphanRemoval: true)]
     private Collection $books;
 
     public function getId(): ?int
@@ -49,6 +50,11 @@ class Author
         return $this->numberBooks;
     }
 
+    public function setNumberBooks(int $numberBooks): void
+    {
+        $this->numberBooks = $numberBooks;
+    }
+
     public function getBooks(): Collection
     {
         return $this->books;
@@ -69,5 +75,15 @@ class Author
             $book->setAuthor(null);
         }
         return $this;
+    }
+
+    public function numberBooksIncrement():void
+    {
+        $this->numberBooks++;
+    }
+
+    public function numberBooksDecrement():void
+    {
+        $this->numberBooks--;
     }
 }

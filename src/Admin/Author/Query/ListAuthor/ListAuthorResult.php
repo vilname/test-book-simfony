@@ -8,11 +8,13 @@ use App\Entity\Author;
 
 class ListAuthorResult
 {
+    public int $id;
     public string $fio;
     public int $numberBooks;
 
     public function __construct(Author $author)
     {
+        $this->id = $author->getId();
         $this->fio = $author->getFio();
         $this->numberBooks = $author->getNumberBooks();
     }

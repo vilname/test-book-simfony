@@ -19,6 +19,7 @@ class BookRepository extends ServiceEntityRepository
     public function findAllWithPagination(PaginationDto $paginationDto): array
     {
         return $this->createQueryBuilder("book")
+            ->orderBy('book.id', 'asc')
             ->setFirstResult($paginationDto->getOffset())
             ->setMaxResults($paginationDto->getLimit())
             ->getQuery()

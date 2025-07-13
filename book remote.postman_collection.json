@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "0b2ec246-2a3c-4dd6-881a-e130a46da2f0",
+		"name": "book remote",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "7211008"
+	},
+	"item": [
+		{
+			"name": "Админка",
+			"item": [
+				{
+					"name": "Автор",
+					"item": [
+						{
+							"name": "Создание",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-API-User-Name",
+										"value": "admin",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fio\": \"Иванов Иван Иванович\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://46.149.70.119/admin/authors/create"
+							},
+							"response": []
+						},
+						{
+							"name": "Изменение",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-API-User-Name",
+										"value": "admin",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fio\": \"Сидоров Семен Петрович\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://46.149.70.119/admin/authors/update/2"
+							},
+							"response": []
+						},
+						{
+							"name": "Детальная",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-User-Name",
+										"value": "admin",
+										"type": "text"
+									}
+								],
+								"url": "http://46.149.70.119/admin/authors/by-id/2"
+							},
+							"response": []
+						},
+						{
+							"name": "Список",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-User-Name",
+										"value": "admin",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://46.149.70.119/admin/authors/list?limit=2",
+									"protocol": "http",
+									"host": [
+										"46",
+										"149",
+										"70",
+										"119"
+									],
+									"path": [
+										"admin",
+										"authors",
+										"list"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-API-User-Name",
+										"value": "admin",
+										"type": "text"
+									}
+								],
+								"url": "http://46.149.70.119/admin/authors/delete/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Книги",
+					"item": [
+						{
+							"name": "Создание",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-API-User-Name",
+										"value": "admin",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Путешествие к центру земли\",\r\n    \"authorId\": 22\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://46.149.70.119/admin/books/create"
+							},
+							"response": []
+						},
+						{
+							"name": "Изменение",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-API-User-Name",
+										"value": "admin",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Путешествие к центру земли!\",\r\n    \"authorId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://46.149.70.119/admin/books/update/2"
+							},
+							"response": []
+						},
+						{
+							"name": "Детальная",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-User-Name",
+										"value": "admin",
+										"type": "text"
+									}
+								],
+								"url": "http://46.149.70.119/admin/books/by-id/5"
+							},
+							"response": []
+						},
+						{
+							"name": "Список",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-User-Name",
+										"value": "admin",
+										"type": "text"
+									}
+								],
+								"url": "http://46.149.70.119/admin/books/list"
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-API-User-Name",
+										"value": "admin",
+										"type": "text"
+									}
+								],
+								"url": "http://46.149.70.119/admin/books/delete/12"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Апи",
+			"item": [
+				{
+					"name": "Книги",
+					"item": [
+						{
+							"name": "Изменение",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Название книги из апи\",\r\n    \"authorId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://46.149.70.119/api/v1/books/update/2"
+							},
+							"response": []
+						},
+						{
+							"name": "Список",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://46.149.70.119/api/v1/books/list?limit=5&page=3",
+									"protocol": "http",
+									"host": [
+										"46",
+										"149",
+										"70",
+										"119"
+									],
+									"path": [
+										"api",
+										"v1",
+										"books",
+										"list"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "5"
+										},
+										{
+											"key": "page",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Детальная",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://46.149.70.119/api/v1/books/by-id/5"
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://46.149.70.119/api/v1/books/delete/3"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
